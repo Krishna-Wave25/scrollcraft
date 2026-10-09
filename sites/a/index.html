@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hollin — Stays chosen by people who slept there</title>
+<meta name="description" content="Hollin is a booking house and quarterly journal for small stays worth the detour. Every room is visited before it is listed.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{if(localStorage.getItem('hollin-motion')==='paused')document.documentElement.classList.add('paused')}catch(e){}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false"><span class="motion-toggle__icon" aria-hidden="true"></span><span>Pause animations</span></button>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#top" aria-label="Hollin, back to top">Hollin</a>
+  <nav class="bar__nav" aria-label="Primary">
+    <a href="#day">A day there</a>
+    <a href="#rules">How we choose</a>
+    <a href="#stays">This season</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn btn--bar" href="#contact">Plan a stay</a>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu"><span>Menu</span><i aria-hidden="true"></i></button>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobile">
+    <a href="#day"><span class="ln"><span>A day there</span></span></a>
+    <a href="#rules"><span class="ln"><span>How we choose</span></span></a>
+    <a href="#stays"><span class="ln"><span>This season</span></span></a>
+    <a href="#contact"><span class="ln"><span>Plan a stay</span></span></a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- 1. HERO -->
+<section class="hero" id="top" aria-label="Introduction">
+  <div class="hero__stage">
+    <img class="layer l-sky" src="assets/hero-sky.svg" alt="" fetchpriority="high">
+    <img class="layer l-far" src="assets/hero-far.svg" alt="">
+    <div class="hero__mark" aria-hidden="true"><span class="ln"><span>Hollin</span></span></div>
+    <img class="layer l-mid" src="assets/hero-mid.svg" alt="A white house with an arched doorway on a green hillside, a pale sun behind the hills.">
+    <img class="layer l-fg" src="assets/hero-fg.svg" alt="">
+    <div class="hero__copy">
+      <h1 class="hero__title">
+        <span class="ln"><span>Stays chosen by</span></span>
+        <span class="ln"><span>people who slept there.</span></span>
+      </h1>
+      <p class="hero__sub reveal-fade">Thirty-eight small hotels and houses, each visited before it is listed. Booked through advisors who know the owners by name.</p>
+      <div class="hero__cta reveal-fade">
+        <a class="btn" href="#stays">See this season</a>
+        <a class="btn btn--ghost" href="#contact">Talk to an advisor</a>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
+  </div>
+</section>
+
+<!-- 2. STATEMENT: words fill in with scroll -->
+<section class="statement" aria-label="What Hollin is">
+  <div class="wrap statement__grid">
+    <p class="statement__kicker">Booking house and quarterly journal, est. 2019</p>
+    <p class="statement__text" id="statementText">A good stay is rarely the biggest room or the longest list of amenities. It is the one where the light falls the right way at four in the afternoon, and someone remembered you take your coffee black.</p>
+  </div>
+</section>
+
+<!-- 3. LAYERED COMPOSITION -->
+<section class="comp" aria-label="Three rooms, one view">
+  <div class="comp__stage wrap">
+    <figure class="pic pic--1" data-speed="0.18">
+      <div class="pic__img"><img src="assets/stay-1.svg" alt="Casa Alba: a white arched terrace facing a still sea under a pale sun." loading="lazy" width="800" height="1000"></div>
+      <figcaption>Casa Alba, Menorca</figcaption>
+    </figure>
+    <figure class="pic pic--2" data-speed="-0.12">
+      <div class="pic__img"><img src="assets/stay-5.svg" alt="A cream courtyard wall with four tall arched windows and a long diagonal shadow." loading="lazy" width="800" height="1000"></div>
+      <figcaption>Patio Ledo, Seville</figcaption>
+    </figure>
+    <figure class="pic pic--3" data-speed="0.3">
+      <div class="pic__img"><img src="assets/stay-2.svg" alt="A single flat-roofed house sitting low among rose and sand coloured dunes." loading="lazy" width="800" height="1000"></div>
+      <figcaption>Duna, Alentejo coast</figcaption>
+    </figure>
+    <div class="comp__card">
+      <h2 class="h2 split-lines">
+        <span class="ln"><span>Small enough to</span></span>
+        <span class="ln"><span>know your name.</span></span>
+      </h2>
+      <p>No stay on Hollin has more than fourteen rooms. We say so up front, because it changes everything about how a place feels at breakfast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PINNED STORY: A DAY AT CASA ALBA -->
+<section class="day" id="day" aria-label="A day at Casa Alba">
+  <div class="day__pin">
+    <svg class="day__scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop id="skyA" offset="0" stop-color="#7C8AA0"/><stop id="skyB" offset="1" stop-color="#D8DDD9"/></linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#EDE5B0" stop-opacity=".9"/><stop offset="1" stop-color="#EDE5B0" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="1600" height="900" fill="url(#skyG)"/>
+      <g id="stars" opacity="0" fill="#F1F0EA"><circle cx="220" cy="140" r="2"/><circle cx="420" cy="260" r="1.6"/><circle cx="640" cy="110" r="2.2"/><circle cx="880" cy="210" r="1.6"/><circle cx="1180" cy="120" r="2"/><circle cx="1420" cy="250" r="2.4"/><circle cx="1010" cy="70" r="1.4"/><circle cx="330" cy="400" r="1.4"/><circle cx="1500" cy="90" r="1.6"/></g>
+      <circle id="sunGlow" r="300" fill="url(#glow)" cx="200" cy="640"/>
+      <circle id="sun" r="86" fill="#EDE5B0" cx="200" cy="640"/>
+      <circle id="moon" r="62" fill="#F1F0EA" cx="1130" cy="260" opacity="0"/>
+      <path d="M0 640 C200 570 380 620 560 580 S940 540 1160 600 S1480 620 1600 570 V900 H0Z" fill="#6C8E94" opacity=".55"/>
+      <path d="M0 720 C240 660 480 710 720 680 S1200 650 1600 700 V900 H0Z" fill="#4F6B57"/>
+      <g>
+        <rect x="900" y="560" width="320" height="170" fill="#F1F0EA"/><rect x="880" y="544" width="360" height="20" fill="#E6E9E4"/>
+        <path d="M980 730 V636 a54 54 0 0 1 108 0 V730Z" fill="#14201B"/>
+        <rect id="win" x="1130" y="600" width="46" height="62" fill="#EDE5B0" opacity="0"/>
+      </g>
+      <path d="M0 790 C300 740 600 800 900 770 S1400 760 1600 790 V900 H0Z" fill="#2B4639"/>
+      <path d="M200 900 C180 760 200 680 214 600 C230 680 256 770 240 900Z" fill="#14201B"/>
+      <rect id="dark" width="1600" height="900" fill="#0f1a2b" opacity="0"/>
+    </svg>
+    <div class="wrap day__ui">
+      <div class="day__meta">
+        <p class="day__place">Casa Alba, Menorca</p>
+        <p class="day__clock" id="dayClock" aria-hidden="true">06:40</p>
+      </div>
+      <div class="day__states">
+        <article class="state" data-state="0">
+          <h2 class="h2">Morning is for the terrace.</h2>
+          <p>Light reaches the east wall at 06:40. Breakfast is whatever Marta found at the market: warm ensaimada, tomatoes, a pot of coffee nobody rushes you out of.</p>
+        </article>
+        <article class="state" data-state="1">
+          <h2 class="h2">Midday belongs to the shade.</h2>
+          <p>The house is built to hold the cool. Six rooms, thick walls, a shallow pool you can reach in four steps. Nothing is scheduled and no one will suggest it.</p>
+        </article>
+        <article class="state" data-state="2">
+          <h2 class="h2">Dusk is when it earns its price.</h2>
+          <p>The sea goes the colour of the inside of a shell. Everyone ends up at the same long table without being asked, which is the whole idea.</p>
+        </article>
+        <article class="state" data-state="3">
+          <h2 class="h2">Night is very, very quiet.</h2>
+          <p>No signal worth mentioning, a lamp in every window, and enough stars that guests stop mid-sentence. Sleep is the amenity.</p>
+        </article>
+      </div>
+      <div class="day__rail" aria-hidden="true"><i id="dayBar"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. STACKING CARDS -->
+<section class="rules" id="rules" aria-label="How we choose stays">
+  <div class="wrap rules__head">
+    <h2 class="h2 split-lines"><span class="ln"><span>Three rules we</span></span><span class="ln"><span>haven’t broken yet.</span></span></h2>
+    <p>Most travel sites list everything and let you sort it out. We do the opposite, and it is the only thing we are strict about.</p>
+  </div>
+  <div class="rules__stack wrap">
+    <article class="rcard rcard--1">
+      <div class="rcard__text"><h3 class="h3">We sleep there first.</h3><p>An advisor stays at least two nights before a place is listed, in the cheapest room, in the quiet season. Photographs lie. Mattresses don’t.</p></div>
+      <div class="rcard__img"><img src="assets/stay-3.svg" alt="White stepped terraces climbing a green hillside beside a small pool." loading="lazy" width="800" height="1000"></div>
+    </article>
+    <article class="rcard rcard--2">
+      <div class="rcard__text"><h3 class="h3">Fourteen rooms, at most.</h3><p>Past that, hosts become staff and guests become numbers. We have turned down very beautiful hotels for being one room too large.</p></div>
+      <div class="rcard__img"><img src="assets/stay-4.svg" alt="A small cabin on stilts over a calm lake in front of layered mountains." loading="lazy" width="800" height="1000"></div>
+    </article>
+    <article class="rcard rcard--3">
+      <div class="rcard__text"><h3 class="h3">The owner picks up the phone.</h3><p>Before you book, we put you in touch with the person who actually runs the place. If they are not reachable, neither is the booking.</p></div>
+      <div class="rcard__img"><img src="assets/stay-6.svg" alt="A slim white lighthouse tower on a sandy headland above a deep blue sea." loading="lazy" width="800" height="1000"></div>
+    </article>
+  </div>
+</section>
+
+<!-- 6. COLLECTION INDEX -->
+<section class="index" id="stays" aria-label="Stays this season">
+  <div class="wrap">
+    <div class="index__head">
+      <h2 class="h2 split-lines"><span class="ln"><span>Six of this season’s</span></span><span class="ln"><span>thirty-eight.</span></span></h2>
+      <p>Select a stay to read what our advisor wrote after sleeping there.</p>
+    </div>
+    <ul class="list" id="stayList">
+      <li><button class="row" data-stay="0"><span class="row__name">Casa Alba</span><span class="row__place">Menorca, Spain</span><span class="row__meta">6 rooms · from €420</span></button></li>
+      <li><button class="row" data-stay="1"><span class="row__name">Duna</span><span class="row__place">Alentejo coast, Portugal</span><span class="row__meta">4 rooms · from €310</span></button></li>
+      <li><button class="row" data-stay="2"><span class="row__name">Terraza Verde</span><span class="row__place">Sóller, Mallorca</span><span class="row__meta">9 rooms · from €380</span></button></li>
+      <li><button class="row" data-stay="3"><span class="row__name">Lake Cabin Ven</span><span class="row__place">Dolomites, Italy</span><span class="row__meta">5 rooms · from €350</span></button></li>
+      <li><button class="row" data-stay="4"><span class="row__name">Patio Ledo</span><span class="row__place">Seville, Spain</span><span class="row__meta">11 rooms · from €260</span></button></li>
+      <li><button class="row" data-stay="5"><span class="row__name">Faro Seco</span><span class="row__place">Cabo de Gata, Spain</span><span class="row__meta">7 rooms · from €290</span></button></li>
+    </ul>
+    <p class="index__note">Names, places and prices are illustrative for this demonstration.</p>
+  </div>
+  <div class="preview" id="preview" aria-hidden="true"><img alt="" src="assets/stay-1.svg"></div>
+</section>
+
+<!-- 7. INTERLUDE -->
+<section class="inter" aria-label="Slow is a destination">
+  <div class="inter__pin">
+    <div class="inter__img" id="interImg"><img src="assets/interlude.svg" alt="" loading="lazy"></div>
+    <h2 class="inter__text" id="interText"><span class="ln"><span>Slow is</span></span><span class="ln"><span>a destination.</span></span></h2>
+  </div>
+</section>
+
+<!-- 8. CLOSE -->
+<section class="close" id="contact" aria-label="Contact">
+  <div class="wrap close__grid">
+    <div>
+      <h2 class="display split-lines"><span class="ln"><span>Tell us where</span></span><span class="ln"><span>you’re tired of.</span></span></h2>
+      <p class="close__lede">Send three lines about the trip you want. An advisor replies within one working day with two stays, not twenty.</p>
+    </div>
+    <form class="form" id="form" novalidate>
+      <label>Your name<input name="name" autocomplete="name" required></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>The trip in a few lines<textarea name="trip" rows="4" required></textarea></label>
+      <p class="form__err" id="formErr" role="alert"></p>
+      <button class="btn btn--solid" type="submit">Send to an advisor</button>
+      <p class="form__ok" id="formOk" role="status" hidden>Thank you. In a live version this would reach an advisor; here nothing leaves your browser.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <p class="foot__brand">Hollin</p>
+    <nav aria-label="Footer"><a href="#day">A day there</a><a href="#rules">How we choose</a><a href="#stays">This season</a><a href="#contact">Contact</a></nav>
+    <button class="foot__top" id="toTop">Back to top</button>
+    <p class="foot__fine">An original concept, built as a design study. Stays, names and prices are fictional.</p>
+  </div>
+</footer>
+
+<dialog class="dlg" id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg__img"><img id="dlgImg" alt="" src="assets/stay-1.svg"></div>
+  <div class="dlg__body">
+    <p class="dlg__place" id="dlgPlace"></p>
+    <h3 class="h3" id="dlgTitle"></h3>
+    <p id="dlgText"></p>
+    <p class="dlg__meta" id="dlgMeta"></p>
+    <div class="dlg__act"><button class="btn btn--solid" id="dlgAsk">Ask about this stay</button><button class="btn btn--ghost-dark" id="dlgClose">Close</button></div>
+  </div>
+</dialog>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

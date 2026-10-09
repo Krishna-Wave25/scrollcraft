@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hadal — An institute for the dark</title>
+<meta name="description" content="Hadal is a research institute for the deepest part of the ocean, a place the sun has never reached. Scroll to descend 10,935 metres.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/unbounded-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{if(localStorage.getItem('hadal-motion')==='paused')document.documentElement.classList.add('paused')}catch(e){}</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false"><span class="motion-toggle__icon" aria-hidden="true"></span><span>Pause animations</span></button>
+<div class="water" id="water" aria-hidden="true"></div>
+<canvas class="snow" id="snow" aria-hidden="true"></canvas>
+
+<header class="bar" id="bar">
+  <a class="brand" href="#surface" aria-label="Hadal, back to the surface">HADAL</a>
+  <nav class="bar__nav" aria-label="Primary">
+    <a href="#zones">The descent</a>
+    <a href="#expeditions">Expeditions</a>
+    <a href="#specimens">Specimens</a>
+    <a href="#join" class="bar__join">Join a dive</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu"><span>Menu</span></button>
+</header>
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Mobile">
+    <a href="#zones">The descent</a><a href="#expeditions">Expeditions</a><a href="#specimens">Specimens</a><a href="#join">Join a dive</a>
+  </nav>
+</div>
+
+<aside class="gauge is-pre" id="gauge" aria-label="Current depth">
+  <div class="gauge__read"><b id="gaugeNum">0</b><span>metres</span></div>
+  <div class="gauge__track"><i id="gaugeFill"></i></div>
+  <span class="gauge__max">10,935</span>
+</aside>
+
+<main id="main">
+
+<!-- 1. SURFACE / opening scene -->
+<section class="surface" id="surface" aria-label="Opening">
+  <div class="surface__pin">
+    <img class="rays" id="rays" src="assets/rays.svg" alt="" fetchpriority="high">
+    <img class="jf jf--a" src="assets/jelly-1.svg" alt="" data-d="1.0">
+    <img class="jf jf--b" src="assets/jelly-2.svg" alt="" data-d="0.6">
+    <img class="jf jf--c" src="assets/jelly-3.svg" alt="" data-d="1.6">
+    <div class="surface__title">
+      <h1 class="title" id="title" aria-label="Hadal">
+        <span class="ch" aria-hidden="true">H</span><span class="ch" aria-hidden="true">A</span><span class="ch" aria-hidden="true">D</span><span class="ch" aria-hidden="true">A</span><span class="ch" aria-hidden="true">L</span>
+      </h1>
+      <p class="surface__sub" id="surfaceSub">An institute for the parts of Earth the sun has never reached.</p>
+    </div>
+    <div class="surface__line" id="surfaceLine"><p>Below the light there is still <em>a place</em>.<br>Descend.</p></div>
+    <div class="surface__hint" id="hint" aria-hidden="true"><i></i><span>Scroll to descend</span></div>
+  </div>
+</section>
+
+<!-- 2. PINNED ZONES -->
+<section class="zones" id="zones" aria-label="The descent, zone by zone">
+  <div class="zones__pin">
+    <div class="zones__art" aria-hidden="true">
+      <div class="zart" data-z="0"><img src="assets/jelly-3.svg" alt="" class="za a1"><img src="assets/rays.svg" alt="" class="za a2"></div>
+      <div class="zart" data-z="1"><img src="assets/jelly-1.svg" alt="" class="za a1"><img src="assets/sp-siphon.svg" alt="" class="za a2"></div>
+      <div class="zart" data-z="2"><img src="assets/sp-angler.svg" alt="" class="za a1"><img src="assets/jelly-2.svg" alt="" class="za a2"></div>
+      <div class="zart" data-z="3"><img src="assets/sp-amphipod.svg" alt="" class="za a1"><img src="assets/sp-ostracod.svg" alt="" class="za a2"></div>
+      <div class="zart" data-z="4"><img src="assets/sp-tube.svg" alt="" class="za a1"><img src="assets/sp-ostracod.svg" alt="" class="za a2"></div>
+    </div>
+    <div class="zones__ui">
+      <div class="zhead">
+        <p class="zhead__label">You are in the</p>
+        <div class="zname" id="zname">
+          <h2 class="zn" data-z="0">Sunlight zone</h2>
+          <h2 class="zn" data-z="1">Twilight zone</h2>
+          <h2 class="zn" data-z="2">Midnight zone</h2>
+          <h2 class="zn" data-z="3">Abyssal zone</h2>
+          <h2 class="zn" data-z="4">Hadal zone</h2>
+        </div>
+      </div>
+      <div class="zcopy" id="zcopy">
+        <p class="zc" data-z="0">Photosynthesis happens here, down to about 200 metres. Everything bright and familiar about the ocean lives in this thin layer.</p>
+        <p class="zc" data-z="1">From 200 to 1,000 metres the blue fades to nothing. Animals here make their own light, mostly to hide.</p>
+        <p class="zc" data-z="2">To 4,000 metres: no sunlight at all, water near freezing, and food that arrives as a slow fall of dead plankton.</p>
+        <p class="zc" data-z="3">Down to 6,000 metres, the seafloor is a plain of soft mud. Life is sparse, slow and astonishingly well adapted.</p>
+        <p class="zc" data-z="4">Below 6,000 metres, only the trenches. Named for Hades, and as close to another planet as we can drive to.</p>
+      </div>
+      <dl class="zdata">
+        <div><dt>Pressure</dt><dd><b id="dPress">1</b> atm</dd></div>
+        <div><dt>Temperature</dt><dd><b id="dTemp">24</b> °C</dd></div>
+        <div><dt>Light</dt><dd><b id="dLight">100</b> %</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TRENCH REVEAL -->
+<section class="trench" id="trench" aria-label="Challenger Deep">
+  <div class="trench__pin">
+    <h2 class="trench__h" id="trenchH"><span class="ln"><span>Put Everest</span></span><span class="ln"><span>on the bottom.</span></span></h2>
+    <div class="trench__mask" id="trenchMask"><div class="trench__stage">
+      <img src="assets/trench.svg" alt="Cross-section of an ocean trench: water descending in a narrow V-shaped cut to a pink marker at the deepest point." class="trench__img">
+      <div class="trench__tag t0"><b>0 m</b>Surface</div>
+      <div class="trench__tag t1"><b>8,849 m</b>Summit of Everest, if it stood here</div>
+      <div class="trench__tag t2"><b>10,935 m</b>Challenger Deep, Mariana Trench</div>
+      <div class="trench__probe" id="probe"></div>
+    </div></div>
+    <p class="trench__p" id="trenchP">Its summit would still sit more than two kilometres under water.</p>
+  </div>
+</section>
+
+<!-- 4. HORIZONTAL EXPEDITIONS -->
+<section class="exp" id="expeditions" aria-label="Expeditions">
+  <div class="exp__pin">
+    <div class="exp__track" id="expTrack">
+      <div class="exp__intro"><h2 class="h2">Four trenches.<br>One question each.</h2><p>Planned dives for the coming season. Depths are the deepest known point of each trench.</p></div>
+      <article class="ep"><p class="ep__depth">10,935<small>m</small></p><div class="ep__body"><h3>Mariana Trench</h3><p>Western Pacific. Does the deepest water on Earth carry its own food web, or only what falls from above?</p></div><img class="ep__art" src="assets/sp-amphipod.svg" alt="" loading="lazy"></article>
+      <article class="ep"><p class="ep__depth">10,047<small>m</small></p><div class="ep__body"><h3>Kermadec Trench</h3><p>South Pacific. How quickly do animals recolonise after a landslide on a trench wall?</p></div><img class="ep__art" src="assets/sp-ostracod.svg" alt="" loading="lazy"></article>
+      <article class="ep"><p class="ep__depth">8,376<small>m</small></p><div class="ep__body"><h3>Puerto Rico Trench</h3><p>Atlantic. The deepest point in the Atlantic is also one of the least visited. What lives there?</p></div><img class="ep__art" src="assets/sp-tube.svg" alt="" loading="lazy"></article>
+      <article class="ep"><p class="ep__depth">7,290<small>m</small></p><div class="ep__body"><h3>Java Trench</h3><p>Indian Ocean. Where does the plastic that sinks end up, and who is eating it?</p></div><img class="ep__art" src="assets/sp-siphon.svg" alt="" loading="lazy"></article>
+    </div>
+    <div class="exp__prog" aria-hidden="true"><i id="expBar"></i></div>
+  </div>
+</section>
+
+<!-- 5. SPECIMEN FLY-THROUGH -->
+<section class="spec" id="specimens" aria-label="Specimens">
+  <div class="spec__pin">
+    <h2 class="spec__h h2">Specimens<br>from the dark</h2>
+    <div class="spec__scene" id="specScene">
+      <div class="spec__group" id="specGroup">
+        <figure class="card" style="--x:-34vw;--y:-6vh;--z:0;--r:14deg"><img src="assets/jelly-1.svg" alt="A glowing teal jellyfish with long trailing tentacles." loading="lazy"><figcaption><b>Atolla</b>Crown jelly. Flashes a blue alarm when attacked, calling bigger predators to eat its attacker.</figcaption></figure>
+        <figure class="card" style="--x:32vw;--y:8vh;--z:-1;--r:-14deg"><img src="assets/sp-angler.svg" alt="An anglerfish with a glowing amber lure above its jaws." loading="lazy"><figcaption><b>Melanocetus</b>Black seadevil. The lure is lit by bacteria that live inside it.</figcaption></figure>
+        <figure class="card" style="--x:-32vw;--y:10vh;--z:-2;--r:14deg"><img src="assets/sp-siphon.svg" alt="A chain of pink bell shaped animals strung together." loading="lazy"><figcaption><b>Siphonophora</b>Not one animal but a colony. Some stretch longer than a blue whale.</figcaption></figure>
+        <figure class="card" style="--x:30vw;--y:-8vh;--z:-3;--r:-14deg"><img src="assets/sp-amphipod.svg" alt="A translucent shrimp-like amphipod with a glowing amber eye." loading="lazy"><figcaption><b>Hirondellea</b>A hadal amphipod. Digests wood that sinks to the bottom of the trenches.</figcaption></figure>
+        <figure class="card" style="--x:0vw;--y:-2vh;--z:-4;--r:0deg"><img src="assets/sp-tube.svg" alt="A cluster of tall white tube worms topped with pink plumes." loading="lazy"><figcaption><b>Riftia</b>Giant tube worm. Has no mouth; feeds on bacteria that eat chemicals from vents.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. LIGHT: contrasting environment -->
+<section class="light" id="light" aria-label="Return to the surface">
+  <div class="light__wave" aria-hidden="true"></div>
+  <div class="light__in wrap">
+    <h2 class="light__h"><span class="ln"><span>Then we come</span></span><span class="ln"><span>back up.</span></span></h2>
+    <div class="light__cols">
+      <p>Everything on this page was measured, photographed and sampled in a place that has no day. We bring it up so that the surface can argue about it in daylight.</p>
+      <ul class="facts">
+        <li><b>≈1,100</b><span>atmospheres of pressure at Challenger Deep</span></li>
+        <li><b>1–4 °C</b><span>water temperature at the bottom</span></li>
+        <li><b>None</b><span>sunlight reaches below 1,000 m</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FINALE -->
+<section class="finale" id="join" aria-label="Join a dive">
+  <div class="finale__type" aria-hidden="true">
+    <div class="fl fl--1"><span>What the</span></div>
+    <div class="fl fl--2"><span>dark</span></div>
+    <div class="fl fl--3"><span>keeps</span></div>
+  </div>
+  <h2 class="sr">What the dark keeps</h2>
+  <div class="wrap finale__form">
+    <p>Dive notes arrive twice a year, when a trench is dived or a species is named. Nothing else.</p>
+    <form id="form" novalidate>
+      <label for="email">Email address</label>
+      <div class="field"><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required><button type="submit" class="go">Join the list</button></div>
+      <p class="ferr" id="ferr" role="alert"></p>
+      <p class="fok" id="fok" role="status" hidden>You’re on the list. In this demonstration nothing leaves your browser.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span class="foot__brand">HADAL</span>
+    <nav aria-label="Footer"><a href="#zones">The descent</a><a href="#expeditions">Expeditions</a><a href="#specimens">Specimens</a><a href="#join">Join a dive</a></nav>
+    <button id="toTop" class="foot__top">Back to the surface</button>
+    <p class="foot__fine">A fictional institute and design study. Depths and animal facts are real; the expeditions are imagined.</p>
+  </div>
+</footer>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
