@@ -1,13 +1,16 @@
 // Functional QA against the live sites. Prints PASS/FAIL per check; exit code 1 if anything fails.
-import { chromium } from 'playwright-core';
+import { chromium, firefox, webkit } from 'playwright-core';
+// BROWSER=chromium|firefox|webkit (default chromium = system Edge)
+const BROWSER = process.env.BROWSER || 'chromium';
 const exe = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const results = [];
 const check = (name, ok, extra = '') => { results.push({ name, ok }); console.log(`${ok ? 'PASS' : 'FAIL'}  ${name}${extra ? '  [' + extra + ']' : ''}`); };
 const wait = (p, ms) => p.waitForTimeout(ms);
-const browser = await chromium.launch({ executablePath: exe, headless: true });
+const browser = BROWSER === 'firefox' ? await firefox.launch() : BROWSER === 'webkit' ? await webkit.launch() : await chromium.launch({ executablePath: exe, headless: true });
+console.log('Browser:', BROWSER, browser.version());
 
 async function open(port, vp, opts = {}) {
-  const ctx = await browser.newContext({ viewport: vp, hasTouch: vp.width < 800, isMobile: vp.width < 800, reducedMotion: opts.rm ? 'reduce' : 'no-preference' });
+  const ctx = await browser.newContext({ viewport: vp, hasTouch: vp.width < 800, isMobile: vp.width < 800 && BROWSER !== 'firefox', reducedMotion: opts.rm ? 'reduce' : 'no-preference' });
   const page = await ctx.newPage(); const errs = [];
   page.on('console', (m) => ['error', 'warning'].includes(m.type()) && errs.push(m.text()));
   page.on('pageerror', (e) => errs.push(e.message));
@@ -159,8 +162,10 @@ for (const [label, port, loops, snow] of [['A', 4517, ['.hero__scroll i'], false
   let moved = true;
   if (snow) { const a = await page.evaluate(() => document.getElementById('snow').toDataURL()); await wait(page, 700); const b = await page.evaluate(() => document.getElementById('snow').toDataURL()); moved = a !== b; check('B toggle: marine snow drifts on its own while playing', moved); }
   // keyboard: second tab stop is the toggle; Space activates it
-  await page.evaluate(() => document.activeElement.blur()); await page.keyboard.press('Tab'); await page.keyboard.press('Tab'); await wait(page, 150);
-  check(`${label} toggle: reachable by keyboard (2nd tab stop)`, await page.evaluate(() => document.activeElement.id === 'motionToggle'));
+  await page.evaluate(() => document.activeElement.blur());
+  // Chromium/Firefox tab through links (skip link first); WebKit's default order skips links, so allow up to 3 presses
+  let tabs = 0; for (; tabs < 3; tabs++) { await page.keyboard.press('Tab'); await wait(page, 100); if (await page.evaluate(() => document.activeElement.id === 'motionToggle')) { tabs++; break; } }
+  check(`${label} toggle: reachable by keyboard within the first 3 tab stops`, await page.evaluate(() => document.activeElement.id === 'motionToggle'), `after ${tabs} Tab presses`);
   await page.keyboard.press('Space'); await wait(page, 300);
   const st = await page.evaluate(() => ({ cls: document.documentElement.classList.contains('paused'), pressed: document.getElementById('motionToggle').getAttribute('aria-pressed'), ls: Object.entries(localStorage).map(([k, v]) => k + '=' + v).join(';') }));
   check(`${label} toggle: Space pauses (html.paused, aria-pressed=true, choice stored)`, st.cls && st.pressed === 'true' && /paused/.test(st.ls), JSON.stringify(st));

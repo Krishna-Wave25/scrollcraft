@@ -20,7 +20,7 @@ html{-webkit-text-size-adjust:100%}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{margin:0;background:var(--abyss);color:var(--bone);font:400 var(--fs)/1.55 var(--text);overflow-x:clip}
+body{margin:0;background:var(--abyss);color:var(--bone);font:400 var(--fs)/1.55 var(--text);overflow-x:hidden;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit}
 p{margin:0}
@@ -58,7 +58,7 @@ p{margin:0}
 .menu a{font:700 clamp(30px,9vw,60px)/1.1 var(--disp);letter-spacing:-.03em;text-decoration:none}
 .menu a:hover{color:var(--cy)}
 
-.gauge{position:fixed;right:clamp(8px,1.4vw,22px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-size:.8em;padding:12px 10px;border-radius:14px;background:#02121aa6;backdrop-filter:blur(8px);transition:opacity .5s,color .4s;pointer-events:none}
+.gauge{position:fixed;right:clamp(8px,1.4vw,22px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:10px;font-size:.8em;padding:12px 10px;border-radius:14px;background:#02121aa6;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:opacity .5s,color .4s;pointer-events:none}
 .gauge.is-off,.gauge.is-pre{opacity:0}
 .gauge__read{text-align:right;line-height:1.1}
 .gauge__read b{display:block;font:700 clamp(16px,1.4vw,22px) var(--disp);font-variant-numeric:tabular-nums;color:var(--cy)}
@@ -145,7 +145,7 @@ p{margin:0}
 .spec__scene{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 45%;z-index:2}
 .spec__group{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
 .card{position:absolute;left:0;top:0;margin:0;width:min(44vw,640px);transform:translate3d(calc(var(--x) - 50%),calc(var(--y) - 50%),calc(var(--z) * 1000px)) rotateY(var(--r,0deg));opacity:0;will-change:opacity}
-.card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:radial-gradient(ellipse at 50% 60%,#0f6a74c0,#031820e6 72%);border:1px solid #5cf2e055;border-radius:4px;padding:10px;box-shadow:0 0 60px -10px #5cf2e044}
+.card img{width:100%;aspect-ratio:4/3;object-fit:contain;background:radial-gradient(ellipse at 50% 60%,#0d5b64,#031820 72%);border:1px solid #5cf2e055;border-radius:4px;padding:10px;box-shadow:0 0 60px -10px #5cf2e044}
 .card figcaption{margin-top:14px;font-size:clamp(15px,1.25vw,19px);line-height:1.4;color:var(--bone);max-width:34ch}
 .card figcaption b{display:block;font:700 1.45em/1.1 var(--disp);color:var(--cy);margin-bottom:6px;letter-spacing:-.01em}
 
@@ -162,7 +162,7 @@ p{margin:0}
 .facts span{font-size:.95em;max-width:22ch}
 
 /* 7 finale */
-.finale{position:relative;background:var(--bone);color:var(--ink);overflow:clip;padding-block:clamp(20px,4vw,60px) clamp(70px,9vw,140px);z-index:2}
+.finale{position:relative;background:var(--bone);color:var(--ink);overflow:hidden;overflow:clip;padding-block:clamp(20px,4vw,60px) clamp(70px,9vw,140px);z-index:2}
 .finale__type{display:grid;gap:0;padding-block:clamp(10px,2vw,30px)}
 .fl{font-family:var(--disp);font-weight:900;line-height:.86;letter-spacing:-.06em;white-space:nowrap;will-change:transform}
 .fl--1{font-size:clamp(30px,9vw,160px);margin-left:var(--gutter)}

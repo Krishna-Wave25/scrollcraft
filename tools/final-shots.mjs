@@ -1,9 +1,11 @@
 // Regenerates the delivered screenshot set from the running sites. Deletes old PNGs first so nothing stale remains.
-import { chromium } from 'playwright-core';
+import { chromium, firefox, webkit } from 'playwright-core';
+// BROWSER=chromium|firefox|webkit, OUT=output root (default artifacts)
+const BROWSER = process.env.BROWSER || 'chromium', ROOT = process.env.OUT || 'artifacts';
 import fs from 'node:fs';
 const exe = 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
-for (const s of ['a', 'b']) { const d = `artifacts/website-${s}`; fs.mkdirSync(`${d}/desktop`, { recursive: true }); fs.mkdirSync(`${d}/mobile`, { recursive: true }); fs.mkdirSync(`${d}/responsive`, { recursive: true }); for (const sub of ['', '/desktop', '/mobile', '/responsive']) for (const f of fs.readdirSync(d + sub)) if (f.endsWith('.png')) fs.unlinkSync(`${d}${sub}/${f}`); }
-const browser = await chromium.launch({ executablePath: exe, headless: true });
+for (const s of ['a', 'b']) { const d = `${ROOT}/website-${s}`; fs.mkdirSync(`${d}/desktop`, { recursive: true }); fs.mkdirSync(`${d}/mobile`, { recursive: true }); fs.mkdirSync(`${d}/responsive`, { recursive: true }); for (const sub of ['', '/desktop', '/mobile', '/responsive']) for (const f of fs.readdirSync(d + sub)) if (f.endsWith('.png')) fs.unlinkSync(`${d}${sub}/${f}`); }
+const browser = BROWSER === 'firefox' ? await firefox.launch() : BROWSER === 'webkit' ? await webkit.launch() : await chromium.launch({ executablePath: exe, headless: true });
 
 const plan = {
   a: {
@@ -19,7 +21,7 @@ const plan = {
   }
 };
 async function session(port, vp) {
-  const ctx = await browser.newContext({ viewport: vp, hasTouch: vp.width < 800, isMobile: vp.width < 800 });
+  const ctx = await browser.newContext({ viewport: vp, hasTouch: vp.width < 800, isMobile: vp.width < 800 && BROWSER !== 'firefox' });
   const page = await ctx.newPage(); await page.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle' }); await page.waitForTimeout(3000);
   return { page, ctx };
 }
@@ -32,7 +34,7 @@ async function go(page, sel, f) {
   await page.evaluate((y) => window.scrollTo(0, y), y); await page.waitForTimeout(2800);
 }
 for (const [site, cfg] of Object.entries(plan)) {
-  const dir = `artifacts/website-${site}`;
+  const dir = `${ROOT}/website-${site}`;
   let { page, ctx } = await session(cfg.port, { width: 1440, height: 900 });
   for (const [name, sel, f] of cfg.shots) { await go(page, sel, f); await page.screenshot({ path: `${dir}/desktop/${name}.png` }); console.log(site, 'desktop', name); }
   await ctx.close();

@@ -144,9 +144,16 @@
     const top = ['#7C8AA0', '#6F93B0', '#5B5F86', '#0f1a2b'];
     const bot = ['#E9E2C4', '#CFE0E3', '#E3A58F', '#2a3a52'];
     const sunCol = ['#EDE5B0', '#F6EFC0', '#E9B79A', '#C9A196'];
+    // on phones the wide scene is cropped: frame the house and let the sun cross that frame
+    const svgEl = $('.day__scene'), narrow = matchMedia('(max-width: 700px)');
+    let X0 = 180, SPAN = 1240;
+    const frame = () => { svgEl.setAttribute('viewBox', narrow.matches ? '760 0 600 900' : '0 0 1600 900'); X0 = narrow.matches ? 700 : 180; SPAN = narrow.matches ? 700 : 1240; };
+    frame(); narrow.addEventListener('change', () => { frame(); update(lastP); });
+    let lastP = 0;
     const update = (p) => {
+      lastP = p;
       const q = Math.min(p / 0.72, 1);
-      const x = 180 + 1240 * q, y = 720 - Math.sin(Math.PI * q) * 520;
+      const x = X0 + SPAN * q, y = 720 - Math.sin(Math.PI * q) * 520;
       sun.setAttribute('cx', x); sun.setAttribute('cy', y); glow.setAttribute('cx', x); glow.setAttribute('cy', y);
       const c = gsap.utils.interpolate(sunCol, q);
       sun.setAttribute('fill', c);

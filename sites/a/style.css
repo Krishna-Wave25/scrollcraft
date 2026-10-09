@@ -22,7 +22,7 @@ html{-webkit-text-size-adjust:100%}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-stopped{overflow:hidden}
-body{margin:0;background:var(--chalk);color:var(--ink);font:400 var(--fs-body)/1.55 var(--sans);overflow-x:clip}
+body{margin:0;background:var(--chalk);color:var(--ink);font:400 var(--fs-body)/1.55 var(--sans);overflow-x:hidden;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit}
 p{margin:0}
@@ -55,7 +55,7 @@ p{margin:0}
 /* bar */
 .bar{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;gap:clamp(16px,3vw,48px);padding:14px var(--gutter);color:var(--ink);pointer-events:none;transition:transform .7s var(--ease),background .4s,color .4s}
 .bar.is-hidden{transform:translateY(-110%)}
-.bar.is-scrolled{background:#f1f0eae6;backdrop-filter:blur(10px)}
+.bar.is-scrolled{background:#f1f0eae6;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .bar.is-dark{color:var(--chalk)}
 .bar.is-dark.is-scrolled{background:#14201bd9}
 .bar>*{pointer-events:auto}
@@ -195,7 +195,7 @@ p{margin:0}
 
 /* dialog */
 .dlg{border:0;padding:0;max-width:min(880px,calc(100vw - 32px));width:100%;background:var(--chalk);color:var(--ink);box-shadow:0 40px 100px -20px #000a}
-.dlg::backdrop{background:#14201bcc;backdrop-filter:blur(4px)}
+.dlg::backdrop{background:#14201bcc;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .dlg[open]{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);animation:dlgIn .6s var(--ease)}
 @keyframes dlgIn{from{opacity:0;transform:translateY(24px)}}
 .dlg__img img{width:100%;height:100%;object-fit:cover;min-height:320px}
