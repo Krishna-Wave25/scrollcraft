@@ -5,6 +5,15 @@
 | **A. Hollin** (editorial travel house) | http://localhost:4517 | `sites/a` |
 | **B. Hadal** (cinematic deep-ocean institute) | http://localhost:4518 | `sites/b` |
 
+## Live
+| | URL |
+|---|---|
+| Landing page | https://krishna-wave25.github.io/scrollcraft/ |
+| Hollin (editorial travel house) | https://krishna-wave25.github.io/scrollcraft/hollin/ |
+| Hadal (cinematic deep-ocean institute) | https://krishna-wave25.github.io/scrollcraft/hadal/ |
+
+Deployed by GitHub Actions (`.github/workflows/pages.yml`): every push to `main` that touches `sites/`, `pages/` or the workflow assembles `sites/a` as `/hollin/` and `sites/b` as `/hadal/` plus the landing page `pages/index.html`. Only those files are published; `tools/`, `artifacts/` and this README are not. Re-run manually from the Actions tab (workflow_dispatch). Both sites use relative paths only, so they work under the `/scrollcraft/` sub-path. The local dev servers on ports 4517 and 4518 are unchanged.
+
 ## Run
 ```bash
 npm install              # gsap, lenis, playwright-core, @fontsource/*
